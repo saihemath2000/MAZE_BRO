@@ -1,0 +1,22 @@
+@startuml
+start
+
+:Open InputStream for world01.txt;
+:Initialize BufferedReader;
+:Initialize row and col variables;
+while (col < gp.maxWorldCol && row < gp.maxWorldRow) is (true)
+    :Read a line from BufferedReader;
+    while (col < gp.maxWorldCol) is (true)
+        :Split line into numbers;
+        :Parse number and assign to mapTileNum[col][row];
+        :Increment col;
+    endwhile
+    if (col == gp.maxWorldCol) then (true)
+        :Reset col to 0;
+        :Increment row;
+    endif
+endwhile
+:Close BufferedReader;
+
+stop
+@enduml

@@ -1,0 +1,21 @@
+@startuml
+start
+
+:Initialize drawInterval;
+:Initialize delta, lastTime, timer, drawCount;
+while (gameThread != null) is (true)
+    :Get currentTime using System.nanoTime();
+    :Calculate delta += (currentTime - lastTime) / drawInterval;
+    :Update timer += (currentTime - lastTime);
+    :Update lastTime = currentTime;
+
+    if (delta >= 1) then (true)
+        :Call update();
+        :Call repaint();
+        :Decrement delta;
+        :Increment drawCount;
+    endif
+endwhile
+
+stop
+@enduml
